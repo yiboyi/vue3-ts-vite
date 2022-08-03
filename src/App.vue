@@ -9,6 +9,7 @@
       </div>
       <DialogVue v-model:title="title" v-model="flag" v-model.yifeng="isflag"></DialogVue>
     </div>
+    <Directives></Directives>
   </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
@@ -18,6 +19,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
 import DialogVue from './components/Dialog.vue';
+import Directives from './components/Directives.vue'
 let flag = ref<boolean>(true)
 // 自定义修饰符
 let isflag = ref<boolean>(true)
