@@ -2,13 +2,19 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
+// 自动倒入import
+import AutoImport from 'unplugin-auto-import/vite'
+
 // npm i --save-dev @types/node
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(),,AutoImport({
+    imports:['vue'],
+    dts:"src/auto-import.d.ts"
+  })],
   resolve: {
     // 路径别名
     alias: [
