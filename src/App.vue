@@ -11,6 +11,8 @@
     </div>
     <Directives></Directives>
     <Hooks></Hooks>
+    <div style="margin-left:150px;">{{$filters.format('全局过滤器使用')}}</div>
+    <div style="color:red;margin-left: 150px;">{{ $env }}</div>
   </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
