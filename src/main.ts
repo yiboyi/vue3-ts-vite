@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './style.css'
+import Loading from './components/loading/'
 import App from './App.vue'
 
 let app = createApp(App)
@@ -17,12 +18,20 @@ let app = createApp(App)
 type Filter = {
     format: <T extends any>(str: T) => T
   }
+
+ 
+type Lod = {
+  show: () => void,
+  hide: () => void
+} 
+
 // 声明要扩充@vue/runtime-core包的声明.
 // 这里扩充"ComponentCustomProperties"接口, 因为他是vue3中实例的属性的类型.
   declare module '@vue/runtime-core' {
     export interface ComponentCustomProperties {
         $filters: Filter,
-        $env:string
+        $env:string,
+        $loading:Lod
     }
   }
 
@@ -31,8 +40,10 @@ app.config.globalProperties.$filters = {
     format<T extends any>(str: T): string {
       return `${str}`
     }
-  }
+  } 
 //Vue3定义全局函数和变量
 app.config.globalProperties.$env = 'Vue3定义全局函数和变量'
+
+app.use(Loading)
 
 app.mount('#app')

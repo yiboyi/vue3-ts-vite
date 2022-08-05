@@ -13,23 +13,33 @@
     <Hooks></Hooks>
     <div style="margin-left:150px;">{{$filters.format('全局过滤器使用')}}</div>
     <div style="color:red;margin-left: 150px;">{{ $env }}</div>
+
+    <button @click="showLoading">切换 自定义组件Loading</button>
   </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
 import DialogVue from './components/Dialog.vue';
 import Directives from './components/Directives.vue'
 import Hooks from './components/HooksDemo.vue'
+import { ComponentInternalInstance, getCurrentInstance } from 'vue'
 let flag = ref<boolean>(true)
 // 自定义修饰符
 let isflag = ref<boolean>(true)
 let title = ref<string>('我是字符串')
 const changFlag = () => {
   flag.value = !flag.value
+}
+
+// 自定义vue组件
+const { appContext } = getCurrentInstance() as ComponentInternalInstance
+const showLoading = ()=>{
+  appContext.config.globalProperties.$loading.show()
+  setTimeout(() => {
+    appContext.config.globalProperties.$loading.hide()
+  },3000)
 }
 </script>
 
