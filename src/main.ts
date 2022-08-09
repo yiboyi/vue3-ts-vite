@@ -1,7 +1,12 @@
 import { createApp } from 'vue'
+// 引入Pinia 类似与vuex
+import {createPinia} from 'pinia'
 import './style.css'
 import Loading from './components/loading/'
 import App from './App.vue'
+
+
+const store = createPinia()
 
 let app = createApp(App)
 
@@ -44,6 +49,7 @@ app.config.globalProperties.$filters = {
 //Vue3定义全局函数和变量
 app.config.globalProperties.$env = 'Vue3定义全局函数和变量'
 
+app.use(store)
 app.use(Loading)
 
 app.mount('#app')
