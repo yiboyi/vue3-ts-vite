@@ -33,6 +33,8 @@ import Directives from './components/Directives.vue'
 import Hooks from './components/HooksDemo.vue'
 import { ComponentInternalInstance, getCurrentInstance } from 'vue'
 import { uesTestStore } from './store/index'
+import { storeToRefs } from 'pinia'
+
 let flag = ref<boolean>(true)
 // 自定义修饰符
 let isflag = ref<boolean>(true)
@@ -77,8 +79,11 @@ const btnPinia = () => {
   //   }  
   
   // 第五种方法通过actions修改 定义Actions 在actions 中直接使用this就可以指到state里面的值
-    // userName.setCurrent()
+  // userName.setCurrent()
 }
+  // 结构pinia里面state里面的值 必须的得用storeToRefs
+  const { current, name } = storeToRefs(userName)
+  console.log(current,name, '=====================结构pinia里面state里面的值')
 </script>
 
 <style scoped lang="scss">
